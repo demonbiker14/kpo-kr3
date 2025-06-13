@@ -1,0 +1,41 @@
+services:
+    postgres:
+        image: postgres:16.3-alpine
+        restart: on-failure
+        environment:
+            POSTGRES_USER: kpo
+            POSTGRES_PASSWORD: password
+            POSTGRES_DB: kpo
+        ports:
+            - "5432:5432"
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+
+    rabbitmq:
+        pull_policy: missing
+        image: rabbitmq:4.0.6-management-alpine
+        restart: on-failure
+        ports:
+            - "5672:5672"
+            - "15672:15672"
+        volumes:
+            - rabbitmq_data:/var/lib/rabbitmq
+        environment:
+            RABBITMQ_DEFAULT_USER: user
+            RABBITMQ_DEFAULT_PASS: password
+
+    order-service:
+        build: ./
+        environment:
+            SPRING_PROFILES_ACTIVE: docker
+        depends_on: [ postgres, rabbitmq ]
+        ports: [ "8081:8080" ]
+        entrypoint: ["java","-jar","/app.jar"]
+
+volumes:
+    postgres-data:
+        driver: local
+    rabbitmq_data:
+        driver: local
+    redis_data:
+        driver: local
