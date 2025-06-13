@@ -6,7 +6,8 @@ WORKDIR /app
 COPY . .
 
 # Build the application
-RUN mvn clean package -DskipTests
+RUN mvn jar:jar
+RUN #mvn clean package -DskipTests
 
 # Stage 2: Create the runtime image
 FROM openjdk:11-jre-slim
@@ -20,5 +21,3 @@ COPY --from=build /app /app
 EXPOSE 8080
 
 # Command to run the application
-
-ENTRYPOINT ["java","-jar","/app.jar"]

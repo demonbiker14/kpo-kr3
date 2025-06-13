@@ -33,7 +33,7 @@ public class OutboxMessage {
     private Instant createdAt;
 
     public static OutboxMessage of(Object event) {
-        ObjectMapper objectMapper = new ObjectMapper(); // Assuming you have a configured ObjectMapper instance
+        ObjectMapper objectMapper = new ObjectMapper();
         String eventString;
         try {
             eventString = objectMapper.writeValueAsString(event);
@@ -44,7 +44,7 @@ public class OutboxMessage {
                 .aggregateType(event.getClass().getSimpleName())
                 .aggregateId(
                         event instanceof OrderCreatedEvent _event ? _event.orderId() : null)
-                .payload(eventString)     // util for jackson serialization
+                .payload(eventString)
                 .processed(false)
                 .createdAt(Instant.now())
                 .build();
