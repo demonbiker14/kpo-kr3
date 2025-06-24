@@ -30,7 +30,7 @@ services:
             SPRING_PROFILES_ACTIVE: docker
         depends_on: [ postgres, rabbitmq ]
         ports: [ "8081:8080" ]
-        entrypoint: ["java","-jar","/app/modules/orders/order-service-1.0-SNAPSHOT.jar"]
+        entrypoint: ["java","-jar","/app/modules/orders/targets/order-service-1.0-SNAPSHOT.jar"]
 
 volumes:
     postgres-data:

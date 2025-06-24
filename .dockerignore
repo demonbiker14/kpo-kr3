@@ -10,7 +10,9 @@
 .taskcluster.yml
 
 # Docker
+Dockerfile
 docker-compose.yml
+docker-compose.yaml
 docker-compose.prod.yaml
 docker-compose.stage.yaml
 docker/*
