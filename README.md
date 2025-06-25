@@ -18,6 +18,16 @@ mvn spring-boot:run
 
 ### 3. Сборка и запуск Java-сервисов с помощью Docker
 
+### Build
 ```bash
-docker compose  up --build -d 
+cd modules/payments
+mvn spring-boot:build-image -DskipTests
+
+cd ../orders
+mvn spring-boot:build-image -DskipTests
+```
+
+#### Run
+```bash
+docker compose up --build -d 
 ```
