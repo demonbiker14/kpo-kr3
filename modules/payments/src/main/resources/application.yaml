@@ -6,9 +6,11 @@ spring:
         password: password
         driver-class-name: org.postgresql.Driver
     jpa:
-        hibernate.ddl-auto: validate      # schema через Flyway
+        hibernate.ddl-auto: validate
         properties.hibernate.format_sql: true
     rabbitmq:
-        host: rabbitmq
+        host: ${RABBITMQ_HOST}
         port: 5672
+        username: user
+        password: password
 logging.level.org.springframework.amqp: WARN

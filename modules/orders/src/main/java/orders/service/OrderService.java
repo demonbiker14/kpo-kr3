@@ -30,8 +30,7 @@ public class OrderService {
         repo.save(order);
 
         OrderCreatedEvent event = new OrderCreatedEvent(order.getId(), userId, amount);
-        outbox.save(OutboxMessage.of(event));   // JSON сериализация внутри фабрики
-
+        outbox.save(OutboxMessage.of(event));
         return order;
     }
 

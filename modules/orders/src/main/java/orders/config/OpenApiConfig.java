@@ -10,7 +10,7 @@ public class OpenApiConfig {
     public GroupedOpenApi ordersApi() {
         return GroupedOpenApi.builder()
                 .group("orders")
-                .packagesToScan("com.shop.orders.api")
+                .packagesToScan("orders.api")
                 .build();
     }
 }

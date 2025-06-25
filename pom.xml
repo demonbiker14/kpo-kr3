@@ -17,16 +17,11 @@
     <packaging>pom</packaging>
     <modules>
         <module>modules/orders</module>
-        <!--        <module>src/payments</module>-->
+        <module>modules/payments</module>
     </modules>
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>3.4.2</version>
-            </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>

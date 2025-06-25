@@ -16,14 +16,14 @@ import static jakarta.persistence.GenerationType.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "outbox", indexes = @Index(columnList = "processed"))
+@Table(name = "outbox_messages", indexes = @Index(columnList = "processed"))
 public class OutboxMessage {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    private String aggregateType; // e.g. "Order"
+    private String aggregateType;
     private Long aggregateId;
 
     @Column(columnDefinition = "jsonb")

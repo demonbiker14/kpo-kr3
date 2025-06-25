@@ -1,6 +1,6 @@
 services:
     postgres:
-        image: postgres:16.3-alpine
+        image: postgres:17
         restart: on-failure
         environment:
             POSTGRES_USER: kpo
@@ -25,12 +25,20 @@ services:
             RABBITMQ_DEFAULT_PASS: password
 
     order-service:
-        build: ./
+        build: ./modules/orders
         environment:
             SPRING_PROFILES_ACTIVE: docker
         depends_on: [ postgres, rabbitmq ]
         ports: [ "8081:8080" ]
-        entrypoint: ["java","-jar","/app/modules/orders/targets/order-service-1.0-SNAPSHOT.jar"]
+        entrypoint: ["java","-jar","/app/target/order-service-1.0-SNAPSHOT.jar"]
+
+    payment-service:
+        build: ./modules/orders
+        environment:
+            SPRING_PROFILES_ACTIVE: docker
+        depends_on: [ postgres, rabbitmq ]
+        ports: [ "8081:8080" ]
+        entrypoint: [ "java","-jar","/app/target/order-service-1.0-SNAPSHOT.jar" ]
 
 volumes:
     postgres-data:

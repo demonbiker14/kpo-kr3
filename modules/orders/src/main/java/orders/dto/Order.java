@@ -7,7 +7,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.Instant;
 
 @Entity
-@Table(name = "orders")
+@Table(name = "orders", schema = "public")
 @Getter
 @Setter
 @NoArgsConstructor
